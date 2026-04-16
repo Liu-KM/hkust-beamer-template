@@ -6,7 +6,7 @@
 
 <p>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-  <img alt="Beamer" src="https://img.shields.io/badge/LaTeX-Beamer-0f4c81.svg">
+  <img alt="LaTeX" src="https://img.shields.io/badge/LaTeX-Beamer-0f4c81.svg">
   <img alt="Engine" src="https://img.shields.io/badge/engine-XeLaTeX-7b3f00.svg">
   <img alt="Format" src="https://img.shields.io/badge/format-16:9-2f6b73.svg">
   <img alt="Status" src="https://img.shields.io/badge/status-unofficial-lightgrey.svg">
@@ -26,20 +26,24 @@
 
 ## 预览
 
-![Template gallery](docs/previews/gallery.png)
+**[查看示例 PDF](docs/previews/hkust-beamer-template-preview.pdf)**
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/previews/title.png" alt="标题页预览" width="31%"></td>
-    <td align="center"><img src="docs/previews/two-column.png" alt="内容页预览" width="31%"></td>
-    <td align="center"><img src="docs/previews/table.png" alt="表格页预览" width="31%"></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>标题页</sub></td>
-    <td align="center"><sub>内容页</sub></td>
-    <td align="center"><sub>表格页</sub></td>
-  </tr>
-</table>
+<sub>下面的截图都可以点击查看高清原图。</sub>
+
+<p align="center">
+  <a href="docs/previews/hkust-beamer-template-preview.pdf">
+    <img src="docs/previews/title-hero.png" alt="标题页预览" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="docs/previews/content-slide.png">
+    <img src="docs/previews/content-slide.png" alt="内容页预览" width="49%">
+  </a>
+  <a href="docs/previews/table-slide.png">
+    <img src="docs/previews/table-slide.png" alt="表格页预览" width="49%">
+  </a>
+</p>
 
 ## 这个模板适合做什么？
 
@@ -95,7 +99,7 @@ xelatex -interaction=nonstopmode slide.tex
 ├── HKUST_Beamer.sty      # 主题定义
 ├── slide.tex             # 示例 deck
 ├── pic/                  # 模板依赖的视觉素材
-├── docs/previews/        # README 截图
+├── docs/previews/        # README 截图 + 示例 PDF
 ├── DISCLAIMER.md         # HKUST 相关素材的使用说明
 ├── LICENSE               # 本仓库代码/文档的 MIT 许可证
 ├── README.md             # 英文版说明

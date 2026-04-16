@@ -6,7 +6,7 @@
 
 <p>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-  <img alt="Beamer" src="https://img.shields.io/badge/LaTeX-Beamer-0f4c81.svg">
+  <img alt="LaTeX" src="https://img.shields.io/badge/LaTeX-Beamer-0f4c81.svg">
   <img alt="Engine" src="https://img.shields.io/badge/engine-XeLaTeX-7b3f00.svg">
   <img alt="Format" src="https://img.shields.io/badge/format-16:9-2f6b73.svg">
   <img alt="Status" src="https://img.shields.io/badge/status-unofficial-lightgrey.svg">
@@ -26,20 +26,24 @@
 
 ## Preview
 
-![Template gallery](docs/previews/gallery.png)
+**[Open sample PDF](docs/previews/hkust-beamer-template-preview.pdf)**
 
-<table>
-  <tr>
-    <td align="center"><img src="docs/previews/title.png" alt="Title slide preview" width="31%"></td>
-    <td align="center"><img src="docs/previews/two-column.png" alt="Content slide preview" width="31%"></td>
-    <td align="center"><img src="docs/previews/table.png" alt="Table slide preview" width="31%"></td>
-  </tr>
-  <tr>
-    <td align="center"><sub>Title slide</sub></td>
-    <td align="center"><sub>Content slide</sub></td>
-    <td align="center"><sub>Table slide</sub></td>
-  </tr>
-</table>
+<sub>Click the screenshots below to view them in full resolution.</sub>
+
+<p align="center">
+  <a href="docs/previews/hkust-beamer-template-preview.pdf">
+    <img src="docs/previews/title-hero.png" alt="Title slide preview" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="docs/previews/content-slide.png">
+    <img src="docs/previews/content-slide.png" alt="Content slide preview" width="49%">
+  </a>
+  <a href="docs/previews/table-slide.png">
+    <img src="docs/previews/table-slide.png" alt="Table slide preview" width="49%">
+  </a>
+</p>
 
 ## Why this template?
 
@@ -95,7 +99,7 @@ Then replace the example slides with your own content.
 ├── HKUST_Beamer.sty      # theme definition
 ├── slide.tex             # example deck
 ├── pic/                  # required template assets
-├── docs/previews/        # README screenshots
+├── docs/previews/        # README screenshots + sample PDF
 ├── DISCLAIMER.md         # branding / usage notice for HKUST assets
 ├── LICENSE               # MIT license for code/docs authored here
 ├── README.md             # English README
