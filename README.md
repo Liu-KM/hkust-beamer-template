@@ -16,6 +16,10 @@
   A lightweight starting point for HKUST-flavored thesis talks, group meetings, course presentations, and research seminars.
 </p>
 
+<p>
+  <a href="README.zh-CN.md">简体中文</a>
+</p>
+
 </div>
 
 ---
@@ -94,7 +98,8 @@ Then replace the example slides with your own content.
 ├── docs/previews/        # README screenshots
 ├── DISCLAIMER.md         # branding / usage notice for HKUST assets
 ├── LICENSE               # MIT license for code/docs authored here
-└── README.md
+├── README.md             # English README
+└── README.zh-CN.md       # Simplified Chinese README
 ```
 
 ## Customization tips
