@@ -1,38 +1,80 @@
+<div align="center">
+
 # hkust-beamer-template
 
-Unofficial, community-maintained HKUST-styled Beamer template for academic presentations.
+**Unofficial, community-maintained HKUST-styled Beamer template for academic presentations.**
 
-> This repository is **not** an official HKUST project. It is a community-made template inspired by HKUST presentation styling for easier slide preparation.
+<p>
+  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+  <img alt="Beamer" src="https://img.shields.io/badge/LaTeX-Beamer-0f4c81.svg">
+  <img alt="Engine" src="https://img.shields.io/badge/engine-XeLaTeX-7b3f00.svg">
+  <img alt="Format" src="https://img.shields.io/badge/format-16:9-2f6b73.svg">
+  <img alt="Status" src="https://img.shields.io/badge/status-unofficial-lightgrey.svg">
+</p>
+
+<p>
+  A lightweight starting point for HKUST-flavored thesis talks, group meetings, course presentations, and research seminars.
+</p>
+
+</div>
+
+---
+
+## Preview
+
+![Template gallery](docs/previews/gallery.png)
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/previews/title.png" alt="Title slide preview" width="31%"></td>
+    <td align="center"><img src="docs/previews/two-column.png" alt="Content slide preview" width="31%"></td>
+    <td align="center"><img src="docs/previews/table.png" alt="Table slide preview" width="31%"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Title slide</sub></td>
+    <td align="center"><sub>Content slide</sub></td>
+    <td align="center"><sub>Table slide</sub></td>
+  </tr>
+</table>
+
+## Why this template?
+
+This repository packages a ready-to-use Beamer theme with an HKUST-inspired visual style so you do not have to start from a blank slide deck every time.
+
+It is meant to be:
+
+- **fast to adopt** — clone, edit a few fields, compile;
+- **clean by default** — balanced header/footer, restrained colors, roomy 16:9 layout;
+- **easy to customize** — the sample deck is intentionally small and readable.
 
 ## Features
 
-- 16:9 Beamer layout
-- HKUST-inspired blue/gold palette
+- HKUST-inspired blue / gold presentation theme
+- 16:9 Beamer layout for modern projectors and screens
 - Top navigation with section progress dots
-- Single-row footer with author / title / page number
-- Ready-to-edit sample deck in `slide.tex`
+- Compact single-row footer with author, title, and page count
+- Built-in sample deck in `slide.tex`
+- Arial fallback logic: if Arial is unavailable, it falls back to `TeX Gyre Heros`
 
-## Repository Layout
+## Quick start
 
-- `HKUST_Beamer.sty` — Beamer theme definition
-- `slide.tex` — example presentation
-- `pic/` — required visual assets referenced by the template
-- `DISCLAIMER.md` — branding and asset usage notice
+### 1) Clone the repository
 
-## Quick Start
+```bash
+git clone https://github.com/Liu-KM/hkust-beamer-template.git
+cd hkust-beamer-template
+```
 
-Compile with XeLaTeX:
+### 2) Compile the sample deck
 
 ```bash
 xelatex -interaction=nonstopmode slide.tex
 xelatex -interaction=nonstopmode slide.tex
 ```
 
-If Arial is unavailable on your machine, the template automatically falls back to `TeX Gyre Heros`.
+### 3) Edit the metadata in `slide.tex`
 
-## Customization
-
-Edit these fields in `slide.tex`:
+Update:
 
 - `\author{...}`
 - `\institute{...}`
@@ -40,11 +82,36 @@ Edit these fields in `slide.tex`:
 - `\subtitle{...}`
 - `\date{...}`
 
-Then replace the example content slides with your own material.
+Then replace the example slides with your own content.
 
-## Branding Notice
+## Project structure
 
-This repository includes HKUST-related visual assets solely to make the template usable. Those marks and logos are **not** released under the MIT license in this repository. Please read [`DISCLAIMER.md`](DISCLAIMER.md) before reusing or redistributing them.
+```text
+.
+├── HKUST_Beamer.sty      # theme definition
+├── slide.tex             # example deck
+├── pic/                  # required template assets
+├── docs/previews/        # README screenshots
+├── DISCLAIMER.md         # branding / usage notice for HKUST assets
+├── LICENSE               # MIT license for code/docs authored here
+└── README.md
+```
+
+## Customization tips
+
+- Duplicate the example content slides in `slide.tex` to keep consistent formatting.
+- Replace the placeholder figure slide with your own plot, diagram, or system figure.
+- Adjust subtitle/date/department lines only in one place; the footer and header stay consistent automatically.
+- If you want to adapt the color system or navigation bar, start from `HKUST_Beamer.sty`.
+
+## Branding notice
+
+> This repository is **not** an official HKUST project.
+> It is a community-made template inspired by HKUST presentation styling.
+
+This repository includes HKUST-related visual assets only to make the template functional. Those marks and logos are **not** released under the MIT license for this repository.
+
+Please read [DISCLAIMER.md](DISCLAIMER.md) before reusing or redistributing those assets.
 
 Relevant official HKUST pages:
 
@@ -54,4 +121,6 @@ Relevant official HKUST pages:
 
 ## License
 
-The LaTeX / style code and documentation authored in this repository are released under the MIT License. HKUST marks, logos, and other official brand assets remain the property of HKUST and are excluded from that license unless HKUST explicitly states otherwise.
+The LaTeX code, theme code, and repository documentation authored here are released under the [MIT License](LICENSE).
+
+HKUST names, marks, logos, and other official brand assets remain the property of HKUST and are excluded from that license unless HKUST explicitly states otherwise.
