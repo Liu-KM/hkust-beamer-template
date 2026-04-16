@@ -14,3 +14,5 @@
 *.toc
 *.xdv
 _build/
+
+slide.pdf
