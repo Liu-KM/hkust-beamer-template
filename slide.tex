@@ -1,0 +1,155 @@
+% Unofficial, community-maintained HKUST-styled Beamer template.
+
+\documentclass[aspectratio=169]{beamer}
+\usepackage{ctex}
+\usepackage{hyperref}
+\usepackage{fontspec}
+
+% Common packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs}
+\usepackage{graphicx,listings,stackengine}
+
+\IfFontExistsTF{Arial}{%
+  \setmainfont{Arial}
+  \setsansfont{Arial}
+}{%
+  \setmainfont{TeX Gyre Heros}
+  \setsansfont{TeX Gyre Heros}
+}
+
+\newcommand{\EnglishToday}{%
+  \ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi
+  \space\number\day, \number\year}
+
+\author{Your Name}
+\institute{Department / Division\\The Hong Kong University of Science and Technology}
+\title{Presentation Title}
+\subtitle{Optional Subtitle}
+\date{\EnglishToday}
+\usepackage{HKUST_Beamer}
+
+% Defs
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    keywordstyle=\bfseries\color{deepblue},
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+}
+
+\begin{document}
+
+\begin{frame}[plain]
+    \vspace*{0.9cm}
+    \begin{center}
+        {\color{hkustblue}\bfseries\fontsize{26}{30}\selectfont \inserttitle \par}
+        \vspace{0.35cm}
+        {\color{hkustgold}\Large \insertsubtitle \par}
+        \vspace{1.0cm}
+        {\large \insertauthor \par}
+        \vspace{0.25cm}
+        {\normalsize \insertinstitute \par}
+        \vspace{0.7cm}
+        {\normalsize \insertdate \par}
+        \vspace{0.32cm}
+        \includegraphics[width=0.23\linewidth]{pic/hkust-title-logo-official-c3.png}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Outline}
+    \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+\section{Overview}
+
+\begin{frame}{Template Highlights}
+\begin{itemize}
+    \item HKUST-inspired blue-and-gold theme with a clean 16:9 layout.
+    \item A watermark background and a compact single-row footer are built in.
+    \item Section progress appears in the top navigation bar automatically.
+\end{itemize}
+
+\begin{block}{How to Use}
+Replace the title page details, add your own content, and keep required assets in \texttt{pic/}.
+\end{block}
+\end{frame}
+
+\section{Content Examples}
+
+\begin{frame}{Two-Column Content}
+\begin{columns}[T]
+    \begin{column}{0.53\linewidth}
+        \begin{itemize}
+            \item Use the left column for your main narrative.
+            \item Keep bullet points short enough to avoid dense paragraphs.
+            \item The theme colors already match the template style, so most decks only need content edits.
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.43\linewidth}
+        \begin{exampleblock}{Presenter Notes}
+        \begin{itemize}
+            \item Replace example text.
+            \item Use blocks for key claims.
+            \item Keep section titles concise.
+        \end{itemize}
+        \end{exampleblock}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Text Example}
+\begin{itemize}
+    \item This slide is intentionally simple so you can duplicate it quickly.
+    \item Important messages can use \alert{gold accent text} without breaking the visual style.
+    \item If you need equations, tables, or code, the base packages are already included.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Figure Placeholder}
+    \begin{figure}
+        \centering
+        \fbox{\parbox[c][0.50\textheight][c]{0.76\linewidth}{\centering\Large Replace this placeholder with your own figure}}
+        \caption{Example figure area.}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Table Example}
+\begin{table}
+\centering
+\begin{tabular}{c|cc}
+Configuration & Validation Score & Final Score \\
+\hline
+A & 0.91 & 0.88 \\
+B & 0.93 & 0.90 \\
+C & 0.95 & 0.92 \\
+D & 0.96 & 0.93 \\
+E & 0.94 & 0.91 \\
+F & 0.89 & 0.87
+\end{tabular}
+\caption{Example table styling.}
+\end{table}
+\end{frame}
+
+\section{Closing}
+
+\begin{frame}{Closing Slide}
+\begin{itemize}
+    \item Replace this with your key takeaways.
+    \item Add a QR code, contact email, or acknowledgement block if needed.
+    \item The template is intentionally lightweight so it is easy to customize.
+\end{itemize}
+\end{frame}
+
+\end{document}

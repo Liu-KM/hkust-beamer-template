@@ -1,0 +1,232 @@
+% Unofficial, community-maintained HKUST-styled Beamer theme.
+
+\RequirePackage{tikz}
+
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+\renewcommand\tablename{Table}
+\renewcommand\figurename{Figure}
+\ProcessOptionsBeamer
+
+\useoutertheme{default}
+\useinnertheme{circles}
+
+\definecolor{hkustblue}{HTML}{003366}
+\definecolor{hkustgold}{HTML}{996600}
+\definecolor{hkustlightblue}{HTML}{DCE7F2}
+\definecolor{hkustmist}{HTML}{F4F7FA}
+\definecolor{hkustline}{HTML}{B8CCE0}
+\definecolor{hkustblueleft}{HTML}{003366}
+\definecolor{hkustbluecenter}{HTML}{1C4F7E}
+\definecolor{hkustblueright}{HTML}{003366}
+
+\makeatletter
+\newdimen\hkust@sectionboxwidth
+\newcount\hkust@sectionpages
+\newcount\hkust@sectionpageindex
+\newcount\hkust@dotindex
+\newcount\hkust@tmpcount
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+\newcommand{\hkustsectiondotfilled}{%
+  \tikz[baseline=-0.55ex]\fill[hkustgold] (0,0) circle (1.15pt);%
+}
+\newcommand{\hkustsectiondotoutline}{%
+  \tikz[baseline=-0.55ex]\draw[line width=0.4pt,color=hkustblue!70] (0,0) circle (1.15pt);%
+}
+\newcommand{\hkustinsertcurrentsectionprogressdots}{%
+  \hkust@sectionpages=\insertsectionendpage\relax
+  \advance\hkust@sectionpages by -\insertsectionstartpage\relax
+  \advance\hkust@sectionpages by 1\relax
+  \hkust@sectionpageindex=\insertframenumber\relax
+  \advance\hkust@sectionpageindex by -\insertsectionstartpage\relax
+  \advance\hkust@sectionpageindex by 1\relax
+  \ifnum\hkust@sectionpages<1\relax
+    \hkust@sectionpages=1\relax
+  \fi
+  \ifnum\hkust@sectionpageindex<1\relax
+    \hkust@sectionpageindex=1\relax
+  \fi
+  \hkust@dotindex=1\relax
+  \loop
+    \ifnum\hkust@dotindex<\numexpr\hkust@sectionpages+1\relax
+      \ifnum\hkust@dotindex=\hkust@sectionpageindex\relax
+        \tikz[baseline=-0.55ex]\fill[hkustgold] (0,0) circle (1.25pt);%
+      \else
+        \tikz[baseline=-0.55ex]\fill[hkustblue!35] (0,0) circle (1.25pt);%
+      \fi
+      \hspace{0.18em}%
+      \advance\hkust@dotindex by1\relax
+  \repeat
+}
+\newcommand{\hkustinsertothersectiondots}[1]{%
+  \expandafter\ifx\csname hkust@sectionpages@#1\endcsname\relax
+    \hkust@tmpcount=1\relax
+  \else
+    \hkust@tmpcount=\csname hkust@sectionpages@#1\endcsname\relax
+  \fi
+  \ifnum\hkust@tmpcount<1\relax
+    \hkust@tmpcount=1\relax
+  \fi
+  \hkust@dotindex=1\relax
+  \loop
+    \ifnum\hkust@dotindex<\numexpr\hkust@tmpcount+1\relax
+      \tikz[baseline=-0.55ex]\fill[hkustblue!25] (0,0) circle (1.25pt);%
+      \hspace{0.18em}%
+      \advance\hkust@dotindex by1\relax
+  \repeat
+}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.31\paperwidth,ht=2.55ex,dp=0.95ex,leftskip=.35cm]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.38\paperwidth,ht=2.55ex,dp=0.95ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.31\paperwidth,ht=2.55ex,dp=0.95ex,rightskip=.35cm plus1fil]{frame number in head/foot}%
+      \hfill\usebeamerfont{frame number in head/foot}\insertframenumber~\frameofframes~\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+\defbeamertemplate*{section in head/foot}{hkust}{%
+  \ifnum\insertsectionheadnumber>1\relax
+    \hspace{0.55em}{\color{hkustline}\rule[-0.35ex]{0.55pt}{2.2ex}}\hspace{0.75em}%
+  \fi
+  {\color{hkustblue}\bfseries\insertsectionhead}\hspace{0.45em}{\color{hkustblue!65}\hkustinsertcurrentsectionprogressdots}%
+}
+
+\defbeamertemplate*{section in head/foot shaded}{hkust}[1][50]{%
+  \ifnum\insertsectionheadnumber>1\relax
+    \hspace{0.55em}{\color{hkustline}\rule[-0.35ex]{0.55pt}{2.2ex}}\hspace{0.75em}%
+  \fi
+  {\color{hkustblue!55}\insertsectionhead}\hspace{0.45em}{\color{hkustblue!50}\hkustinsertothersectiondots{\insertsectionheadnumber}}%
+}
+
+\newcommand{\hkustinsertsectionnavigation}{%
+  \def\sectionentry##1##2##3##4##5{\ifnum##1>0\relax\expandafter\xdef\csname hkust@sectionpages@##1\endcsname{0}\fi}%
+  \def\slideentry##1##2##3##4##5##6{%
+    \ifnum##1>0\relax
+      \hkust@tmpcount=\csname hkust@sectionpages@##1\endcsname\relax
+      \advance\hkust@tmpcount by1\relax
+      \expandafter\xdef\csname hkust@sectionpages@##1\endcsname{\the\hkust@tmpcount}%
+    \fi}%
+  \dohead%
+  \hkust@sectionboxwidth=\paperwidth%
+  \ifnum\beamer@sectionmax>0\relax
+    \divide\hkust@sectionboxwidth by \beamer@sectionmax%
+  \fi
+  \hbox to \paperwidth{%
+    \def\slideentry##1##2##3##4##5##6{}%
+    \def\sectionentry##1##2##3##4##5{%
+      \ifnum##5=\c@part\relax
+        \def\insertsectionhead{##2}%
+        \def\insertsectionheadnumber{##1}%
+        \setbox\beamer@tempbox=\hbox to \hkust@sectionboxwidth{%
+          \hspace{0.18cm}%
+          \hyperlink{Navigation##3}{%
+            \ifnum\c@section=##1\relax
+              {\usebeamertemplate{section in head/foot}}%
+            \else
+              {\usebeamertemplate{section in head/foot shaded}}%
+            \fi}%
+          \hfil%
+        }%
+        \ht\beamer@tempbox=1.9ex\dp\beamer@tempbox=0.9ex%
+        \box\beamer@tempbox%
+      \fi}%
+    \dohead%
+  }%
+}
+
+\defbeamertemplate*{headline}{hkust}{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3.0ex,dp=1.2ex]{headline}%
+    \usebeamerfont{section in head/foot}%
+    \hkustinsertsectionnavigation%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.6pt,dp=0pt]{headline divider}%
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{frametitle}{hkust}{%
+  \nointerlineskip%
+  \ifx\insertframesubtitle\@empty%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.55ex,dp=0.65ex,leftskip=.3cm,rightskip=.3cm]{frametitle}%
+      \raisebox{-0.05ex}[0pt][0pt]{\usebeamerfont{frametitle}\strut\insertframetitle\strut}\par%
+    \end{beamercolorbox}%
+  \else
+    \begin{beamercolorbox}[wd=\paperwidth,leftskip=.3cm,rightskip=.3cm,vmode]{frametitle}%
+      \vskip1.0ex%
+      \usebeamerfont{frametitle}\strut\insertframetitle\strut\par%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\par}%
+      \vskip0.5ex%
+    \end{beamercolorbox}%
+  \fi%
+}
+\makeatother
+
+\setbeamerfont{frametitle}{size=\LARGE,series=\bfseries}
+\setbeamerfont{title in head/foot}{size=\scriptsize}
+\setbeamerfont{author in head/foot}{size=\scriptsize}
+\setbeamerfont{frame number in head/foot}{size=\scriptsize}
+\setbeamerfont{section in head/foot}{size=\scriptsize}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{mini frames}{}
+\setbeamertemplate{headline}[hkust]
+\setbeamertemplate{frametitle}[hkust]
+\setbeamertemplate{section in head/foot}[hkust]
+\setbeamertemplate{section in head/foot shaded}[hkust]
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\setbeamercolor{structure}{fg=hkustblue}
+\setbeamercolor{title}{fg=hkustblue}
+\setbeamercolor{subtitle}{fg=hkustgold}
+\setbeamercolor{headline}{bg=white,fg=hkustblue}
+\setbeamercolor{headline divider}{bg=hkustline,fg=hkustline}
+\setbeamercolor{frametitle}{bg=hkustblue,fg=white}
+\setbeamercolor{frametitle divider}{bg=hkustline,fg=hkustline}
+\setbeamercolor{palette primary}{fg=hkustblue,bg=hkustlightblue}
+\setbeamercolor{palette secondary}{fg=hkustblue,bg=white}
+\setbeamercolor{palette tertiary}{fg=hkustblue,bg=hkustlightblue}
+\setbeamercolor{palette quaternary}{fg=hkustblue,bg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{author in head/foot}{bg=hkustblueleft,fg=white}
+\setbeamercolor{title in head/foot}{bg=hkustbluecenter,fg=white}
+\setbeamercolor{frame number in head/foot}{bg=hkustblueright,fg=white}
+\setbeamercolor{section in head/foot}{fg=hkustblue,bg=hkustlightblue}
+\setbeamercolor{subsection in head/foot}{fg=hkustblue,bg=white}
+\setbeamercolor{section in head/foot shaded}{fg=hkustblue!55!white,bg=hkustmist}
+\setbeamercolor{subsection in head/foot shaded}{fg=hkustblue!55!white,bg=hkustmist}
+\setbeamercolor{block title}{bg=hkustblue,fg=white}
+\setbeamercolor{block body}{bg=hkustmist,fg=black}
+\setbeamercolor{block title example}{bg=hkustgold,fg=white}
+\setbeamercolor{block body example}{bg=hkustgold!10!white,fg=black}
+\setbeamercolor{item projected}{fg=white,bg=hkustblue}
+\setbeamercolor{section in toc}{fg=hkustblue}
+\setbeamercolor{subsection in toc}{fg=hkustgold}
+\setbeamercolor{alerted text}{fg=hkustgold}
+
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection,sectionstyle=show/shaded,subsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+\AtBeginSubsection[]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection,currentsubsection,sectionstyle=show/shaded,subsectionstyle=show/shaded/hide]
+  \end{frame}
+}
+
+\setbeamertemplate{background}{%
+  \includegraphics[width=\paperwidth,height=\paperheight]{pic/HKUST-background-official.png}%
+}
+
+\mode<all>
